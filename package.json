@@ -11,6 +11,14 @@
   },
   "dependencies": {
     "@coderline/alphatab": "^1.6.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@fontsource/roboto": "^5.2.6",
+    "@mui/icons-material": "^7.2.0",
+    "@mui/material": "^7.2.0",
+    "@mui/x-data-grid": "^8.8.0",
+    "material-ui-popup-state": "^5.3.6",
+    "octokit": "^5.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

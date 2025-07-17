@@ -1,45 +1,58 @@
-import { useEffect, useRef, useState } from 'react'
-import './App.css'
-import { AlphaTabApi, type json } from '@coderline/alphatab'
+import { useContext, useEffect, useRef } from "react"
+import * as alphaTab from '@coderline/alphatab'
+import { AlphaTabUpdateCtx, AlphaTabValueCtx } from "./AlphaTabCtx"
+import Navbar from "./components/Navbar"
+import Player from "./components/Player"
+import Controller from "./components/Controller"
+import "./App.css"
 
-function App() {
-  const elementRef = useRef<HTMLDivElement>(null);
-  const [api, setApi] = useState<AlphaTabApi>();
 
-  useEffect(() => {
-    const api = new AlphaTabApi(elementRef.current!, {
-      core: {
-        file: 'https://www.alphatab.net/files/canon.gp',
-        fontDirectory: '/font/'
-      },
-      player: {
-        enablePlayer: true,
-        enableCursor: true,
-        enableUserInteraction: true,
-        soundFont: '/soundfont/sonivox.sf2'
-      }
-    } as json.SettingsJson);
-    
-    setApi(api);
+const App = () => {
 
-    return () => {
-      console.log('destroy', elementRef, api);
-      api.destroy();
-    }
-  }, []);
+    const playerDivRef = useRef<HTMLDivElement>(null)
+    const alphaTabApi = useContext(AlphaTabValueCtx)
+    const setAlphaTabApi = useContext(AlphaTabUpdateCtx)
 
-  function playPause() {
-    api?.playPause();
-  }
+    useEffect(() => {
+        const api = new alphaTab.AlphaTabApi(playerDivRef.current!, {
+            display: {
+                layoutMode: alphaTab.LayoutMode.Page
+                // layoutMode: alphaTab.LayoutMode.Horizontal
+            },
+            core: {
+                file: '/canon.gp',
+                fontDirectory: '/font/'
+            },
+            player: {
+                enablePlayer: true,
+                enableCursor: true,
+                enableUserInteraction: true,
+                scrollMode: alphaTab.ScrollMode.Continuous,
+                scrollElement: playerDivRef.current!,
+                soundFont: '/soundfont/sonivox.sf2'
+            }
+        } as alphaTab.json.SettingsJson)
 
-  return (
-    <>
-      Hello AlphaTab!
+        setAlphaTabApi!(api);
 
-      <button type="button" onClick={() => playPause()}>Play/Pause</button>
-      <div ref={elementRef} />
+        return () => { alphaTabApi?.destroy(); }
+    }, [])
+
+    return <>
+        <Navbar />
+        <div style={{
+            position: "absolute",
+            top: "48px",
+            bottom: "48px",
+            right: 0,
+            left: 0,
+            overflow: "auto",
+            scrollbarWidth: "none",
+        }}>
+            <Player ref={playerDivRef} />
+        </div>
+        <Controller />
     </>
-  )
 }
 
 export default App
