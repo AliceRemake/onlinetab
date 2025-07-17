@@ -29,7 +29,8 @@ const MasterVolume = (_props: Props) => {
                     <Paper sx={{ padding: "10px 0px" }}>
                         <Slider
                             size="small" orientation="vertical" valueLabelDisplay="auto"
-                            defaultValue={100} value={volume} min={0} max={200} sx={{ minHeight: "100px" }}
+                            defaultValue={100} value={volume} min={0} max={200} step={5}
+                            sx={{ minHeight: "100px" }}
                             onChange={(_event, volume) => {
                                 if (alphaTabApi !== null) {
                                     alphaTabApi.masterVolume = volume / 100

@@ -97,7 +97,9 @@ const TrackItems = (_props: Props) => {
                                 </ToggleButtonGroup>
                             </TableCell>
                             <TableCell size='small'>
-                                <Slider value={volumes[index]} size='small' defaultValue={100} min={0} max={200} sx={{ minWidth: "150px" }}
+                                <Slider
+                                    value={volumes[index]} size='small' sx={{ minWidth: "150px" }}
+                                    defaultValue={100} min={0} max={200} step={5}
                                     onChange={(_event: Event, volume: number) => {
                                         alphaTabApi?.changeTrackVolume([track], volume / 100)
                                         setVolumes(volumes.map((_, i) => {

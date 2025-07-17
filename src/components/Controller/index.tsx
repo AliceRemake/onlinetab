@@ -1,6 +1,7 @@
 import { AppBar, Box, Stack, Toolbar } from "@mui/material"
 import MainSlider from "./MainSlider"
 import LocalFileBtn from "./LocalFileBtn";
+import CloudFileBtn from "./CloudFileBtn";
 import PlayPauseBtn from "./PlayPauseBtn";
 import LoopStateBtn from "./LoopStateBtn";
 import MasterVolume from "./MasterVolume";
@@ -20,6 +21,7 @@ function Controller(_props: Props) {
             <Toolbar variant="dense" disableGutters>
                 <Stack direction="row" alignItems="center" justifyContent="flex-start">
                     <LocalFileBtn />
+                    <CloudFileBtn />
                 </Stack>
                 <Box flexGrow={1}>
                 </Box>

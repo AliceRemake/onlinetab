@@ -9,12 +9,12 @@ interface Props { }
 const TrackSelector = (_props: Props) => {
 
     return <>
-        <PopupState variant="popper" popupId="demo-popup-popper">
+        <PopupState variant="popper" popupId="tracker-selector">
             {(popupState) => (<>
                 <IconButton size="large" color="inherit" {...bindToggle(popupState)}>
                     <GraphicEqIcon />
                 </IconButton>
-                <Popper {...bindPopper(popupState)} placement="top-end" disablePortal keepMounted>
+                <Popper {...bindPopper(popupState)} placement="top-end" keepMounted sx={{ zIndex: 1000 }}>
                     <TrackItems />
                 </Popper>
             </>)}

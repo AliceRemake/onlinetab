@@ -20,12 +20,13 @@ const App = () => {
                 // layoutMode: alphaTab.LayoutMode.Horizontal
             },
             core: {
-                file: '/canon.gp',
+                file: '/canon-full.gp',
                 fontDirectory: '/font/'
             },
             player: {
                 enablePlayer: true,
                 enableCursor: true,
+                enableAnimatedBeatCursor: true,
                 enableUserInteraction: true,
                 scrollMode: alphaTab.ScrollMode.Continuous,
                 scrollElement: playerDivRef.current!,
@@ -40,14 +41,16 @@ const App = () => {
 
     return <>
         <Navbar />
-        <div style={{
+        <div id="player-container" style={{
             position: "absolute",
             top: "48px",
             bottom: "48px",
             right: 0,
             left: 0,
-            overflow: "auto",
-            scrollbarWidth: "none",
+            overflowX: "hidden",
+            overflowY: "auto",
+            scrollbarWidth: "auto",
+            scrollbarGutter: "unset"
         }}>
             <Player ref={playerDivRef} />
         </div>

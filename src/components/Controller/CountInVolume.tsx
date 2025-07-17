@@ -30,7 +30,8 @@ const CountInVolume = (_props: Props) => {
                     <Paper sx={{ padding: "10px 0px" }}>
                         <Slider
                             size="small" orientation="vertical" valueLabelDisplay="auto"
-                            defaultValue={0} value={volume} min={0} max={200} sx={{ minHeight: "100px" }}
+                            defaultValue={0} value={volume} min={0} max={200} step={5}
+                            sx={{ minHeight: "100px" }}
                             onChange={(_event, volume) => {
                                 if (alphaTabApi !== null) {
                                     alphaTabApi.countInVolume = volume / 100
