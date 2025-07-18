@@ -30,7 +30,6 @@ const LocalFileBtn = (_props: Props) => {
         }
         if (event.target?.files !== null) {
             reader.readAsArrayBuffer(event.target.files[0])
-            console.log("Load Local File: ", event.target.files[0].name)
         }
     }
 
