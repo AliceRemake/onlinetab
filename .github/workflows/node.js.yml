@@ -6,8 +6,6 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -26,9 +24,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: git config --global user.name "AliceRemake" 
-        && git config --global user.email "1302393176@qq.com"
-        && npm install
-        && npm run deploy
-      env:
+
+    - run: npm run build
+    
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
         VITE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
